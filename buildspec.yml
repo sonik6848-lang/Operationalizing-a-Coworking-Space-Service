@@ -12,8 +12,10 @@ phases:
       - echo "Root contents:"
       - ls -la
       - echo Starting build at `date`
-      - echo Building the Docker image...          
-      - docker build --platform linux/amd64 -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - echo Building the Docker image...
+      - export DOCKER_CLI_EXPERIMENTAL=enabled
+      - docker buildx create --use
+      - docker build --platform linux/amd64 -t $IMAGE_REPO_NAME:$IMAGE_TAG --load .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG      
   post_build:
     commands:
