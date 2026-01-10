@@ -2,7 +2,7 @@
 FROM python:3.11-slim
 
 # Set working directory inside the container
-WORKDIR /app
+WORKDIR /analytics
 
 # Install system dependencies
 RUN apt-get update -y && \
@@ -13,11 +13,11 @@ RUN apt-get update -y && \
 RUN pip install --upgrade pip setuptools wheel
 
 # Copy requirements file and install Python dependencies
-COPY requirements.txt .
+COPY analytics/requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy the rest of the application code
-COPY . .
+COPY analytics/ .
 
 # Set environment variables (optional defaults)
 ENV DB_USERNAME=myuser
