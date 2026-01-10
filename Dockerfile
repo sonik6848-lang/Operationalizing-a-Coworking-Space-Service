@@ -12,12 +12,9 @@ RUN apt-get update -y && \
 # Upgrade pip and build tools
 RUN pip install --upgrade pip setuptools wheel
 
-# Copy requirements file and install Python dependencies
-COPY requirements.txt .
+
 RUN pip install -r requirements.txt
 
-# Copy the rest of the application code
-COPY . .
 
 # Set environment variables (optional defaults)
 ENV DB_USERNAME=myuser
@@ -30,4 +27,5 @@ ENV DB_NAME=mydatabase
 EXPOSE 5000
 
 # Default command to run your app
+
 CMD ["python", "app.py"]
