@@ -1,3 +1,4 @@
+# Use official Python image (slim version)
 FROM python:3.11-slim
 
 # Set working directory inside the container
@@ -11,12 +12,12 @@ RUN apt-get update -y && \
 # Upgrade pip and build tools
 RUN pip install --upgrade pip setuptools wheel
 
-# Copy requirements file from analytics folder and install Python dependencies
+# Copy requirements file and install Python dependencies
 COPY analytics/requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy the rest of the application code
-COPY analytics/ ./
+COPY analytics/ .
 
 # Set environment variables (optional defaults)
 ENV DB_USERNAME=myuser
