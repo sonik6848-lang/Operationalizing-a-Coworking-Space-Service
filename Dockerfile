@@ -1,8 +1,7 @@
-# Use official Python image (slim version)
 FROM python:3.11-slim
 
 # Set working directory inside the container
-WORKDIR /app
+WORKDIR /analytics
 
 # Install system dependencies
 RUN apt-get update -y && \
@@ -12,9 +11,12 @@ RUN apt-get update -y && \
 # Upgrade pip and build tools
 RUN pip install --upgrade pip setuptools wheel
 
-
+# Copy requirements file from analytics folder and install Python dependencies
+COPY analytics/requirements.txt .
 RUN pip install -r requirements.txt
 
+# Copy the rest of the application code
+COPY analytics/ ./
 
 # Set environment variables (optional defaults)
 ENV DB_USERNAME=myuser
@@ -27,5 +29,4 @@ ENV DB_NAME=mydatabase
 EXPOSE 5000
 
 # Default command to run your app
-
 CMD ["python", "app.py"]
