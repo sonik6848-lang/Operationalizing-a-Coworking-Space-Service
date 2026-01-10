@@ -200,11 +200,6 @@ Remove all deployed resources to avoid ongoing charges:
 kubectl delete -f deployment/
 eksctl delete cluster --name my-cluster --region us-east-1
 
-🧠 Project Summary
-
-This project showcases enterprise-grade DevOps practices by containerizing a Python analytics API, automating builds with AWS CodeBuild, and deploying to Amazon EKS.
-It implements CI/CD automation, Kubernetes configuration management, persistent storage, health checks, and centralized logging using CloudWatch Container Insights.
-
 
 
 🧠 Project Summary
